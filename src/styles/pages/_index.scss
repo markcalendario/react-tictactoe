@@ -1,0 +1,300 @@
+body {
+  background-color: $coal;
+}
+
+#hero {
+  padding: 70px;
+  height: 100vh;
+  background-image: url("../../public/static/images/hero-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .container {
+    height: 100%;
+
+    .wrapper {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-around;
+
+      .top {
+
+        h1 {
+          font-size: 80px;
+        }
+
+        h1,
+        p {
+          color: $smoke;
+          @include apply-text-shade(0, 5px, 10px, $coal);
+        }
+      }
+
+      .bottom {
+
+        h1 {
+          color: $smoke;
+          @include apply-text-shade(0, 5px, 15px, $coal);
+          animation: blink-animation 1s ease-in infinite;
+          cursor: pointer;
+
+          &:hover {
+            animation: unset;
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes blink-animation {
+    from {
+      opacity: 1;
+    }
+
+    45% {
+      opacity: 0;
+    }
+
+    55% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+#battle-area {
+  min-height: 100vh;
+  background-size: cover;
+  padding: 50px 0;
+}
+
+.score-area {
+  .player-scores {
+
+    h2 {
+      color: $smoke;
+    }
+
+    .player,
+    .bot {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      border: 1px $smoke solid;
+      margin: 5px 0;
+
+      .score-box {
+        width: calc(100%/3);
+        height: 30px;
+        transition: 1s cubic-bezier(1, -0.27, .47, 1.33);
+
+        &:nth-child(2) {
+          border-left: 1px $smoke solid;
+          border-right: 1px $smoke solid;
+        }
+      }
+
+      .win-score {
+        background-color: rgba($color: green, $alpha: 0.8);
+        animation: newScoreAddAnim 2s ease;
+      }
+
+      .lose-score {
+        background-color: rgba($color: red, $alpha: 0.8);
+        animation: loseScoreAnim 2s ease;
+      }
+
+      @keyframes newScoreAddAnim {
+        from {
+          background-color: rgba($color: red, $alpha: 0.8);
+        }
+
+        10% {
+          background-color: rgba($color: orange, $alpha: 0.8);
+        }
+
+        70% {
+          background-color: rgba($color: orange, $alpha: 0.8);
+        }
+
+        to {
+          background-color: rgba($color: green, $alpha: 0.8);
+        }
+      }
+
+      @keyframes loseScoreAnim {
+        from {
+          background-color: rgba($color: orange, $alpha: 0.8);
+        }
+
+        60% {
+          background-color: rgba($color: orange, $alpha: 0.8);
+        }
+
+        to {
+          background-color: rgba($color: red, $alpha: 0.8);
+        }
+      }
+    }
+
+  }
+}
+
+#tic-tac-toe-board {
+  width: 100%;
+  height: 500px;
+
+  border-radius: 7px;
+  border: 5px solid $smoke;
+  margin: 20px auto;
+
+  .wrapper {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    .box {
+      background-color: rgba($color: $coal, $alpha: 0.8);
+      width: 33.33%;
+      height: 33.33%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px $smoke solid;
+    }
+
+    .red-box {
+      cursor: not-allowed;
+      transition: 0.1s ease;
+
+      &:hover {
+        background-color: rgba($color: red, $alpha: 0.5);
+      }
+    }
+
+    .green-box {
+      cursor: pointer;
+      transition: 0.1s ease;
+
+      &:hover {
+        background-color: rgba($color: green, $alpha: 0.5);
+      }
+    }
+  }
+}
+
+.user-tick {
+  animation: userBlockTick 0.5s ease 0s 1 normal forwards;
+  font-size: 70px;
+  color: $smoke;
+
+  @keyframes userBlockTick {
+    0% {
+      transform: scale(0);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+#result-board {
+  background-color: rgba($color: $coal, $alpha: 0.8);
+  width: 100%;
+  height: 500px;
+  padding: 20px;
+  border-radius: 7px;
+  overflow: hidden;
+  animation: resultBoardAnim 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 20px auto;
+
+  button {
+    background-color: $smoke;
+    padding: 20px;
+    cursor: pointer;
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  .texters {
+    text-align: center;
+
+    p {
+      color: $smoke;
+    }
+
+    .player {
+      color: green;
+    }
+
+    .bot {
+      color: red;
+    }
+
+    .draw {
+      color: darkorange;
+    }
+  }
+}
+
+#game-result-announcer {
+  background-color: rgba($color: $coal, $alpha: 0.8);
+  width: 100%;
+  height: 500px;
+  padding: 20px;
+  border-radius: 7px;
+  overflow: hidden;
+  animation: resultBoardAnim 1s ease;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 20px auto;
+  text-align: center;
+
+  .result-text {
+    font-size: xx-large;
+  }
+
+  .player {
+    color: green;
+  }
+
+  .bot {
+    color: red;
+  }
+}
+
+@keyframes resultBoardAnim {
+  from {
+    transform: translateY(-200px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  background-color: $coal;
+  width: 100%;
+  padding: 10px;
+
+  a {
+    font-size: medium;
+    color: $smoke;
+    text-decoration: none;
+  }
+}
