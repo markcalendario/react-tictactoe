@@ -283,18 +283,3 @@ body {
     transform: translateY(0);
   }
 }
-
-footer {
-  position: fixed;
-  bottom: 0;
-  text-align: center;
-  background-color: $coal;
-  width: 100%;
-  padding: 10px;
-
-  a {
-    font-size: medium;
-    color: $smoke;
-    text-decoration: none;
-  }
-}

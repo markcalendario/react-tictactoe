@@ -1,4 +1,5 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react"
+import Navbar from "./Navbar"
 
 const backgroundMusicList = [
   "/static/music/Battle! Trainer 8-BIT - Pokemon Diamond & Pearl.mp3",
@@ -25,8 +26,8 @@ export default function App() {
 
   return (
     <Fragment>
+      <Navbar />
       {!isStarted ? <PreStart startGame={handleStartGame} /> : <BattleScreen />}
-      <Foot />
     </Fragment>
   )
 }
@@ -372,13 +373,5 @@ function TicTacToeBoard({ playerWin, botWin, boardFull }) {
         }
       </div>
     </div>
-  )
-}
-
-function Foot() {
-  return (
-    <footer>
-      <a href="https://www.github.com/markcalendario">Mark Calendario</a>
-    </footer>
   )
 }
